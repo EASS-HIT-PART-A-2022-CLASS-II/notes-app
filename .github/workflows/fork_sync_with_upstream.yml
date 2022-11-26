@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: EASS-HIT-PART-A-2022-CLASS-II/fork-sync-v1.6.3@v1.6.3
+      - uses: EASS-HIT-PART-A-2022-CLASS-II/fork-sync-v1.6.3@v2
         with:
           owner: AnastasiaH8696
           base: main
