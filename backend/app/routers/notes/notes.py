@@ -16,7 +16,7 @@ async def get_notes():
 async def get_note_data(id: str):
     note = await retrieve_note(id)
     if note:
-        return ResponseModel(note, "Student data retrieved successfully")
+        return ResponseModel(note, "Notes data retrieved successfully")
     return ErrorResponseModel("An error occurred.", 404, "Student doesn't exist.")
 
 @router.get("/search_notes")
@@ -30,7 +30,7 @@ async def search_notes(title: str):
 async def add_note_data(note: Note = Body(...)):
     note = jsonable_encoder(note)
     new_note = await add_note(note)
-    return ResponseModel(new_note, "Student added successfully.")
+    return ResponseModel(new_note, "Notes added successfully.")
 
 @router.delete("/{id}")
 async def delete_note_data(id: str):
