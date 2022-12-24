@@ -8,8 +8,8 @@ notes_collection = database.collection
 def note_helper(note)-> dict:
     return {
         "id": str(note["_id"]),
-        "title": note["title"],
-        "description": note["description"]
+        "text": note["text"],
+        "date": note["date"]
     }
 
 # Retrieve all notes present in the database
