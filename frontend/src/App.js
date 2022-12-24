@@ -9,21 +9,21 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   const fetchNotes = async () => {
-    const response = await fetch("http://localhost:8000/api/v1/notes");
+    const response = await fetch("http://localhost:8080/v1/notes");
     const data = await response.json();
     if (!response.ok) {
       throw Error(data.detail);
     }
-    setNotes(data);
+    setNotes(data.data[0]);
   };
 
   const sendNote = async (newNote) => {
-    const response = await fetch("http://localhost:8000/api/v1/notes", {
+    const response = await fetch("http://localhost:8080/v1/notes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ newNote }),
+      body: JSON.stringify({ ...newNote }),
     });
 
     const data = await response.json();
@@ -33,9 +33,24 @@ const App = () => {
   };
 
   const removeNote = async (id) => {
-    const response = await fetch(`http://localhost:8000/api/v1/notes/${id}`, {
+    const response = await fetch(`http://localhost:8080/v1/notes/${id}`, {
       method: "DELETE",
     });
+    const data = await response.json();
+    if (!response.ok) {
+      throw Error(data.detail);
+    }
+  };
+
+  const sendUpdate = async (id, update) => {
+    const response = await fetch(`http://localhost:8080/v1/notes/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...update }),
+    });
+
     const data = await response.json();
     if (!response.ok) {
       throw Error(data.detail);
@@ -50,7 +65,7 @@ const App = () => {
     }
   }, []);
 
-  const addNote = async (text) => {
+  const addNote = (text) => {
     const date = new Date();
     const newNote = {
       text: text,
@@ -66,11 +81,27 @@ const App = () => {
     }
   };
 
-  const deleteNote = async (id) => {
+  const deleteNote = (id) => {
     try {
       removeNote(id);
       const newNotes = notes.filter((note) => note.id !== id);
       setNotes(newNotes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editNote = (id, update) => {
+    try {
+      sendUpdate(id, update);
+      const updatedNotes = notes;
+      updatedNotes.forEach((note) => {
+        if (note.id === id) {
+          note.text = update.text;
+          note.date = update.date;
+        }
+      });
+      setNotes(updatedNotes);
     } catch (error) {
       console.log(error);
     }
@@ -87,6 +118,7 @@ const App = () => {
           )}
           handleAddNote={addNote}
           handleDeleteNote={deleteNote}
+          handleEditNote={editNote}
         />
       </div>
     </div>
