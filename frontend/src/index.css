@@ -78,6 +78,23 @@ textarea:focus {
   white-space: pre-wrap;
 }
 
+.edit-mode
+{
+  display: none;
+}
+
+.delete-mode {
+  display: none;
+}
+
+.edit {
+  background-color: #67d7cc;
+}
+
+.edit-btn {
+  margin-right: 10px;
+}
+
 .note-footer {
   display: flex;
   align-items: center;
