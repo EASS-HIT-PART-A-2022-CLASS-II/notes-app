@@ -1,8 +1,7 @@
 from pydantic import BaseModel
-
 class Note(BaseModel):
-    title: str
-    description: str
+    text: str
+    date: str
 
 def ResponseModel(data, message):
     return {

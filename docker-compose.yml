@@ -1,5 +1,18 @@
 version: "3.11"
 services:
+  ui:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" 
+    networks:
+      - notes-app-network
+    depends_on:
+      - backend
+    container_name: notes-app-frontend
+
+
   database:
     image: mongo
     ports:
