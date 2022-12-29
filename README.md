@@ -2,6 +2,8 @@
 
 Get organized with a simple note maker!
 
+![Alt text](assets\notes-app.png?raw=true "Title")
+
 ## Features
 
 Using the app, you will be able to manage your personal notes by:
@@ -10,7 +12,11 @@ Using the app, you will be able to manage your personal notes by:
 
 ⭐ Editing an existing notes
 
-⭐ Deleting an achieved notes
+⭐ Deleting an existing notes
+
+⭐ Dark mode
+
+## Demo
 
 ## How to run the app
 ### Pre-requisites
