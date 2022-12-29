@@ -2,8 +2,6 @@ import { MdDeleteForever, MdEditNote } from "react-icons/md";
 import { useState } from "react";
 
 const Note = ({ id, text, date, handleDeleteNote, handleEditNote }) => {
-  const [noteText, setNoteText] = useState(text);
-  const [noteDate, setNoteDate] = useState(date);
   const [editMode, setEditMode] = useState(false);
   const [editText, setEditText] = useState(text);
 
@@ -22,8 +20,6 @@ const Note = ({ id, text, date, handleDeleteNote, handleEditNote }) => {
         text: editText,
         date: updatedDate.toLocaleDateString(),
       };
-      setNoteText(update.text);
-      setNoteDate(update.date);
       handleEditNote(id, update);
       setEditMode(false);
     }
@@ -33,7 +29,7 @@ const Note = ({ id, text, date, handleDeleteNote, handleEditNote }) => {
     <div className="note-container">
       <div className={`${(!editMode && "note") || (editMode && "edit-mode")}`}>
         <div className="note-header">
-          <span>{noteText}</span>
+          <span>{text}</span>
           <MdEditNote
             onClick={() => setEditMode(true)}
             className="edit-icon"
@@ -41,7 +37,7 @@ const Note = ({ id, text, date, handleDeleteNote, handleEditNote }) => {
           />
         </div>
         <div className="note-footer">
-          <small>{noteDate}</small>
+          <small>{date}</small>
           <MdDeleteForever
             onClick={() => {
               handleDeleteNote(id);
