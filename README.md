@@ -2,7 +2,7 @@
 
 Get organized with a simple note maker!
 
-![Alt text](assets\notes-app.png?raw=true "Title")
+![notes-app](https://user-images.githubusercontent.com/53013989/209926409-dd5f5d75-8c49-4f6d-8032-3d97c5d82ed4.png)
 
 ## Features
 
@@ -17,6 +17,8 @@ Using the app, you will be able to manage your personal notes by:
 ⭐ Dark mode
 
 ## Demo
+
+https://user-images.githubusercontent.com/53013989/209926512-60dc0cae-4e62-4fed-9615-bad7174b0683.mp4
 
 ## How to run the app
 ### Pre-requisites
