@@ -11,7 +11,7 @@ const App = () => {
   const forceUpdate = useForceUpdate();
 
   const fetchNotes = async () => {
-    const response = await fetch("http://localhost:8080/v1/notes");
+    const response = await fetch("http://localhost:8080/v1/notes/");
     const data = await response.json();
     if (!response.ok) {
       throw Error(data.detail);
@@ -20,7 +20,7 @@ const App = () => {
   };
 
   const sendNote = async (newNote) => {
-    const response = await fetch("http://localhost:8080/v1/notes", {
+    const response = await fetch("http://localhost:8080/v1/notes/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
