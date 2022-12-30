@@ -2,14 +2,16 @@ import { useState, useEffect } from "react";
 import NotesList from "./components/NotesList";
 import Search from "./components/Search";
 import Header from "./components/Header";
+import useForceUpdate from 'use-force-update';
 
 const App = () => {
   const [notes, setNotes] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [darkMode, setDarkMode] = useState(false);
+  const forceUpdate = useForceUpdate();
 
   const fetchNotes = async () => {
-    const response = await fetch("http://localhost:8080/v1/notes");
+    const response = await fetch("http://localhost:8080/v1/notes/");
     const data = await response.json();
     if (!response.ok) {
       throw Error(data.detail);
@@ -18,7 +20,7 @@ const App = () => {
   };
 
   const sendNote = async (newNote) => {
-    const response = await fetch("http://localhost:8080/v1/notes", {
+    const response = await fetch("http://localhost:8080/v1/notes/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,8 +76,8 @@ const App = () => {
 
     try {
       sendNote(newNote);
-      const newNotes = [...notes, newNote];
-      setNotes(newNotes);
+      fetchNotes();
+      forceUpdate();
     } catch (error) {
       console.log(error);
     }
@@ -86,6 +88,7 @@ const App = () => {
       removeNote(id);
       const newNotes = notes.filter((note) => note.id !== id);
       setNotes(newNotes);
+      forceUpdate();
     } catch (error) {
       console.log(error);
     }
@@ -102,6 +105,7 @@ const App = () => {
         }
       });
       setNotes(updatedNotes);
+      forceUpdate();
     } catch (error) {
       console.log(error);
     }
