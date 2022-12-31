@@ -16,6 +16,12 @@ Using the app, you will be able to manage your personal notes by:
 
 ⭐ Dark mode
 
+## Architecture
+
+This app was developed using a microservices architecture combining Frontend, Backend, and DB microservices:
+
+![Blank diagram](https://user-images.githubusercontent.com/53013989/210108134-ae37f11d-8519-4ef6-8f7e-1e52611b5b5f.png)
+
 ## Demo
 
 https://user-images.githubusercontent.com/53013989/209926512-60dc0cae-4e62-4fed-9615-bad7174b0683.mp4
